@@ -83,16 +83,18 @@
             scope.expandingProperty = scope.expandOn;
           }
           else{
-            var _firstRow = scope.treeData[0], 
-                _keys = Object.keys(_firstRow);
-            for(var i =0, len = _keys.length; i<len; i++){
-              if(typeof(_firstRow[_keys[i]])=='string'){
-                expandingProperty = _keys[i];
-                break;
+            if (!!scope.treeData[0]) {
+              var _firstRow = scope.treeData[0], 
+                  _keys = Object.keys(_firstRow);
+              for(var i =0, len = _keys.length; i<len; i++){
+                if(typeof(_firstRow[_keys[i]])=='string'){
+                  expandingProperty = _keys[i];
+                  break;
+                }
               }
+              if(!expandingProperty) expandingProperty = _keys[0];
+              scope.expandingProperty = expandingProperty;
             }
-            if(!expandingProperty) expandingProperty = _keys[0];
-            scope.expandingProperty = expandingProperty;
           }
 
           if(!attrs.colDefs){
